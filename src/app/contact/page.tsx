@@ -12,8 +12,9 @@ export default function ContactPage() {
       <header>
         <h1 className="text-3xl font-bold">Me contacter</h1>
         <p className="mt-2 text-muted-foreground">
-          N'hésitez pas à me joindre !
-        </p>
+  N’hésitez pas à me joindre !
+</p>
+
       </header>
       <ContactForm />
     </div>

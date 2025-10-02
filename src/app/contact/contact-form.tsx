@@ -7,6 +7,12 @@ import { Button } from '@/components/ui/button';
 import { CheckCircle2, AlertTriangle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+declare global {
+  interface Window {
+    grecaptcha?: { reset: () => void };
+  }
+}
+
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(sendContact, { ok: false });
   const SITE_KEY: string | undefined = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
@@ -17,9 +23,9 @@ export default function ContactForm() {
   if (state.ok && !pending) {
     formRef.current?.reset();                               // vide le formulaire
     formRef.current?.querySelector('input')?.focus();       // focus
-    if (typeof window !== 'undefined' && (window as any).grecaptcha) {
-      (window as any).grecaptcha.reset();                   // reset reCAPTCHA si présent
-    }
+    if (typeof window !== 'undefined') {
+  window.grecaptcha?.reset();
+}
   }
 }, [state.ok, pending]);
 

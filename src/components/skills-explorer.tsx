@@ -1,6 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { Code2, Megaphone, ImageIcon, Music2, Wrench, Users } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { SkillTag } from '@/components/skill';
 
 type Category = { title: string; groups: { title: string; items: string[] }[] };
@@ -44,14 +45,14 @@ export function SkillsExplorer({ categories }: { categories: Category[] }) {
 
   const allTitles = categories.map((c) => c.title);
 
-  const iconByTitle = {
+  const iconByTitle: Partial<Record<string, LucideIcon>> = {
     'Développement web': Code2,
     'Marketing digital': Megaphone,
     'Logiciels de création visuelle': ImageIcon,
     'Logiciels de création audio': Music2,
     'Outils & workflow': Wrench,
-    Collaboration: Users,
-  } as const;
+    'Collaboration': Users,
+  };
 
   return (
     <section className="space-y-4" aria-labelledby="skills-filter">
@@ -98,15 +99,15 @@ export function SkillsExplorer({ categories }: { categories: Category[] }) {
           <p className="text-sm text-muted-foreground">Aucun résultat.</p>
         ) : (
           filtered.map((c) => {
-            const Icon = (iconByTitle as any)[c.title] ?? null;
+            const Icon = iconByTitle[c.title];
             return (
               <section key={c.title} className="space-y-4">
                 <h2 className="flex items-center gap-2 text-xl font-semibold">
-                  {Icon && (
+                  {Icon ? (
                     <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-primary-50 text-primary-800">
                       <Icon className="h-4 w-4" />
                     </span>
-                  )}
+                  ) : null}
                   {c.title}
                 </h2>
 
