@@ -18,23 +18,6 @@ Site CV/portfolio réalisé avec **Next.js 15**, **TypeScript** et **Tailwind**,
 
 ---
 
-## 🔗 Live
-
-- **Prod** : _(à renseigner après déploiement)_
-- **Preview** : Vercel fournit automatiquement un lien pour chaque PR/branche.
-
----
-
-## 📸 Captures (optionnel)
-
-Place des captures dans `docs/` et référence-les ici :
-
-| Home                   | Projets                      | Centres d’intérêts                      |
-| ---------------------- | ---------------------------- | --------------------------------------- |
-| ![Home](docs/home.png) | ![Projets](docs/projets.png) | ![Centres d’intérêts](docs/centres.png) |
-
----
-
 ## 🧱 Stack & structure
 
 - **Framework** : Next.js (App Router, Server/Client Components)
@@ -42,30 +25,6 @@ Place des captures dans `docs/` et référence-les ici :
 - **Anim** : Framer Motion
 - **Email** : Nodemailer (SMTP)
 - **Hébergeur** : Vercel
-
-Arborescence (extrait) :
-src/
-app/
-(pages) # /, /parcours, /competences, /projets, /centres-interets, /contact
-template.tsx # transitions de page (Framer Motion)
-contact/
-actions.ts # Server Action (Nodemailer + reCAPTCHA optionnel)
-contact-form.tsx # composant client du formulaire
-components/
-hero.tsx
-project-card.tsx
-image-gallery-card.tsx
-page-arrows.tsx # flèches de navigation (desktop)
-swipe-nav.tsx # swipe navigation (mobile)
-ui/\* # éléments shadcn/ui
-lib/
-email.ts # transport Nodemailer
-routes.ts # ordre des routes + voisins
-seo.ts # siteConfig (liens, nom)
-public/
-images/ # ex: /images/hero.jpg
-projets/ # captures page Projets
-interets/ # galeries Centres d’intérêts
 
 ---
 
