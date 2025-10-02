@@ -6,10 +6,9 @@ import { SiteFooter } from '../components/site-footer';
 import type { Metadata } from 'next'
 import { PageArrows } from "@/components/page-arrows";
 import { SwipeNavigationListener } from "@/components/swipe-nav";
-
+import { SwipeOnboarding } from '@/components/swipe-onboarding';
 
 const inter = Inter({ subsets: ['latin'] });
-
 
 export const metadata: Metadata = {
   title: 'Guillaume Lorente — CV & Portfolio',
@@ -36,6 +35,7 @@ return (
 <SiteHeader />
 <PageArrows />                {/* flèches desktop */}
 <SwipeNavigationListener />   {/* swipe mobile */}
+<SwipeOnboarding />
 <main className="flex-1 container mx-auto px-4 py-8">{children}</main>
 <SiteFooter />
 </body>
