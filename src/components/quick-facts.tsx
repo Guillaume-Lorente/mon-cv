@@ -3,9 +3,9 @@ import { Briefcase, Code2, MapPin, Languages, CalendarCheck, type LucideIcon } f
 type Fact = { icon: LucideIcon; label: string; value: string };
 
 const facts: Fact[] = [
-  { icon: Code2, label: "Spécialités", value: "Marketing Digital • Développement Web & Web Mobile" },
+  { icon: Code2, label: "Spécialités", value: "Marketing et Communication Digitale • Développement Web & Web Mobile" },
   { icon: MapPin, label: "Localisation", value: "Région Auvergne-Rhône-Alpes" },
-  { icon: Languages, label: "Langues", value: "Français, Anglais" },
+  { icon: Languages, label: "Langues", value: "Français, Anglais C1" },
   { icon: CalendarCheck, label: "Disponibilité", value: "Recherche CDI/CDD/Free" },
 ];
 

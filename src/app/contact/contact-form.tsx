@@ -21,8 +21,8 @@ export default function ContactForm() {
 
   useEffect(() => {
   if (state.ok && !pending) {
-    formRef.current?.reset();                               // vide le formulaire
-    formRef.current?.querySelector('input')?.focus();       // focus
+    formRef.current?.reset();                               
+    formRef.current?.querySelector('input')?.focus();       
     if (typeof window !== 'undefined') {
   window.grecaptcha?.reset();
 }
