@@ -12,14 +12,14 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Guillaume Lorente — CV & Portfolio',
-  description: 'Développeur web full-stack — Portfolio, expériences, compétences et projets.',
-  metadataBase: new URL('https://votre-domaine.dev'),
+  description: 'Communication web et marketing digital,Développeur web full-stack — Portfolio, expériences, compétences et projets.',
+  metadataBase: new URL('https://mon-cv-umber-seven.vercel.app/'),
   openGraph: {
     type: 'website',
-    url: 'https://votre-domaine.dev',
+    url: 'https://mon-cv-umber-seven.vercel.app/',
     siteName: 'Guillaume Lorente',
     title: 'Guillaume Lorente — CV & Portfolio',
-    description: 'Développeur web full-stack — Portfolio, expériences, compétences et projets.',
+    description: 'Communication web et marketing digital,Développeur web full-stack — Portfolio, expériences, compétences et projets.',
   },
   twitter: {
     card: 'summary_large_image',
