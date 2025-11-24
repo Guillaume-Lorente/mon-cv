@@ -33,7 +33,7 @@ export function Hero() {
             <Link href="/contact">Me contacter</Link>
           </Button>
           <Button asChild>
-  <a href="../public/cvGuillaumeLorente.pdf" download>
+  <a href="/cvGuillaumeLorente.pdf" download>
     Télécharger mon CV
   </a>
 </Button>
