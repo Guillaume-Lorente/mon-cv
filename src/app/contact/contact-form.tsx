@@ -9,54 +9,76 @@ import { cn } from '@/lib/utils';
 
 declare global {
   interface Window {
+    __recaptchaOnload?: () => void;
     grecaptcha?: {
-      render: (container: HTMLElement, params: { sitekey: string }) => number;
-      reset: (id?: number) => void;
+      render?: (container: HTMLElement, params: { sitekey: string }) => number;
+      reset?: (id?: number) => void;
+      enterprise?: {
+        render?: (container: HTMLElement, params: { sitekey: string }) => number;
+        reset?: (id?: number) => void;
+      };
     };
   }
 }
 
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(sendContact, { ok: false });
-  const SITE_KEY: string | undefined = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+  const SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   const formRef = useRef<HTMLFormElement>(null);
   const recaptchaRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<number | null>(null);
-  const [scriptReady, setScriptReady] = useState(false);
 
-  // Render explicite dès que script + div sont prêts
+  const [recaptchaReady, setRecaptchaReady] = useState(false);
+
+  // Callback global appelé par Google quand l’API reCAPTCHA est prête
+  useEffect(() => {
+    window.__recaptchaOnload = () => setRecaptchaReady(true);
+    return () => {
+      delete window.__recaptchaOnload;
+    };
+  }, []);
+
+  // Rendu explicite du widget (une seule fois)
   useEffect(() => {
     if (!SITE_KEY) return;
-    if (!scriptReady) return;
+    if (!recaptchaReady) return;
     if (!recaptchaRef.current) return;
-    if (!window.grecaptcha) return;
 
-    // évite de re-render 2x
-    if (widgetIdRef.current === null) {
-      widgetIdRef.current = window.grecaptcha.render(recaptchaRef.current, {
-        sitekey: SITE_KEY,
-      });
+    const gre = window.grecaptcha;
+    const renderFn = gre?.render ?? gre?.enterprise?.render;
+
+    if (!renderFn) {
+      console.error('reCAPTCHA API chargée, mais render() est introuvable.');
+      return;
     }
-  }, [SITE_KEY, scriptReady]);
 
+    if (widgetIdRef.current === null) {
+      widgetIdRef.current = renderFn(recaptchaRef.current, { sitekey: SITE_KEY });
+    }
+  }, [SITE_KEY, recaptchaReady]);
+
+  // Reset après envoi réussi
   useEffect(() => {
-  if (state.ok && !pending) {
-    formRef.current?.reset();                               
-    formRef.current?.querySelector('input')?.focus();       
-    if (window.grecaptcha && widgetIdRef.current !== null) {
-        window.grecaptcha.reset(widgetIdRef.current);
-}
-  }
-}, [state.ok, pending]);
+    if (!state.ok || pending) return;
+
+    formRef.current?.reset();
+    formRef.current?.querySelector('input')?.focus();
+
+    const gre = window.grecaptcha;
+    const resetFn = gre?.reset ?? gre?.enterprise?.reset;
+
+    if (resetFn && widgetIdRef.current !== null) {
+      resetFn(widgetIdRef.current);
+    }
+  }, [state.ok, pending]);
 
   return (
     <>
       {SITE_KEY && (
         <Script
-          src="https://www.google.com/recaptcha/api.js?render=explicit"
+          src="https://www.google.com/recaptcha/api.js?onload=__recaptchaOnload&render=explicit"
           strategy="afterInteractive"
-          onLoad={() => setScriptReady(true)}
         />
       )}
 
@@ -99,13 +121,7 @@ export default function ContactForm() {
         {/* Honeypot invisible */}
         <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
 
-        {SITE_KEY && (
-          <div
-            ref={recaptchaRef}
-            // petit garde-fou visuel pour éviter “vide”
-            className="min-h-[78px]"
-          />
-        )}
+        {SITE_KEY && <div ref={recaptchaRef} className="min-h-[78px]" />}
 
         <Button type="submit" disabled={pending} className="mt-1">
           {pending ? 'Envoi…' : 'Envoyer'}
