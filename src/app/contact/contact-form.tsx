@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect, useRef } from 'react';
+import { useActionState, useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
 import { sendContact } from './actions';
 import { Button } from '@/components/ui/button';
@@ -9,7 +9,10 @@ import { cn } from '@/lib/utils';
 
 declare global {
   interface Window {
-    grecaptcha?: { reset: () => void };
+    grecaptcha?: {
+      render: (container: HTMLElement, params: { sitekey: string }) => number;
+      reset: (id?: number) => void;
+    };
   }
 }
 
@@ -18,20 +21,44 @@ export default function ContactForm() {
   const SITE_KEY: string | undefined = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   const formRef = useRef<HTMLFormElement>(null);
+  const recaptchaRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<number | null>(null);
+  const [scriptReady, setScriptReady] = useState(false);
+
+  // Render explicite dès que script + div sont prêts
+  useEffect(() => {
+    if (!SITE_KEY) return;
+    if (!scriptReady) return;
+    if (!recaptchaRef.current) return;
+    if (!window.grecaptcha) return;
+
+    // évite de re-render 2x
+    if (widgetIdRef.current === null) {
+      widgetIdRef.current = window.grecaptcha.render(recaptchaRef.current, {
+        sitekey: SITE_KEY,
+      });
+    }
+  }, [SITE_KEY, scriptReady]);
 
   useEffect(() => {
   if (state.ok && !pending) {
     formRef.current?.reset();                               
     formRef.current?.querySelector('input')?.focus();       
-    if (typeof window !== 'undefined') {
-  window.grecaptcha?.reset();
+    if (window.grecaptcha && widgetIdRef.current !== null) {
+        window.grecaptcha.reset(widgetIdRef.current);
 }
   }
 }, [state.ok, pending]);
 
   return (
     <>
-      {SITE_KEY && <Script src="https://www.google.com/recaptcha/api.js" strategy="lazyOnload" />}
+      {SITE_KEY && (
+        <Script
+          src="https://www.google.com/recaptcha/api.js?render=explicit"
+          strategy="afterInteractive"
+          onLoad={() => setScriptReady(true)}
+        />
+      )}
 
       <form ref={formRef} action={formAction} className="grid gap-3 max-w-xl">
         <input
@@ -72,7 +99,13 @@ export default function ContactForm() {
         {/* Honeypot invisible */}
         <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
 
-        {SITE_KEY && <div className="g-recaptcha" data-sitekey={SITE_KEY} />}
+        {SITE_KEY && (
+          <div
+            ref={recaptchaRef}
+            // petit garde-fou visuel pour éviter “vide”
+            className="min-h-[78px]"
+          />
+        )}
 
         <Button type="submit" disabled={pending} className="mt-1">
           {pending ? 'Envoi…' : 'Envoyer'}
