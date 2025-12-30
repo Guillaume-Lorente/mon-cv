@@ -17,7 +17,7 @@ const ImageGalleryCard = dynamic(
 
 type Video = { title: string; url: string; description?: string };
 const musicVideos: Video[] = [
-  { title: "Funky Monks — Live 2020", url: "https://www.youtube.com/embed/a2uJde_XWzU?list=RDa2uJde_XWzU", description: "Extrait live." },
+  { title: "Funky Monks — Live 2020", url: "https://www.youtube.com/embed/a2uJde_XWzU", description: "Extrait live." },
   { title: "The Creeps — Live 2018", url: "https://www.youtube.com/embed/gejZ1Rhseqw", description: "Extrait live." },
 ];
 
@@ -99,10 +99,10 @@ const trips = [
   },
 ];
 
-// Photographie
-const photoAlbums = [
-  { title: "Lac de Bellecombe", href: "/lac-de-bellecombe.jpg", description: "Paysage." },
-];
+// // Photographie
+// const photoAlbums = [
+//   { title: "Lac de Bellecombe", href: "/lac-de-bellecombe.jpg", description: "Paysage." },
+// ];
 
 function ResponsiveVideo({ src, title }: { src: string; title: string }) {
   return (
@@ -179,7 +179,7 @@ export default function CentresInteretsPage() {
       </section>
 
       {/* Photographie */}
-      <section className="space-y-2">
+      {/* <section className="space-y-2">
         <h2 className="text-2xl font-semibold">📷 Photographie</h2>
         <p className="text-sm text-muted-foreground">Je commence mais je m’y intéresse de plus en plus. Matériel = boîtier Nikon D300S.</p>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -205,7 +205,7 @@ export default function CentresInteretsPage() {
             </Card>
           ))}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
