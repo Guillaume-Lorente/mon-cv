@@ -48,7 +48,7 @@ export function Hero() {
   className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl border overflow-hidden bg-card max-h-[50vh] w-full"
 >
   <Image
-    src="/photo-pro.png"
+    src="/images/photo-pro.png"
     alt="Photo de présentation"
     fill
     priority

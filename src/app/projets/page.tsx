@@ -25,7 +25,7 @@ const projects: Project[] = [
   {
     title: "Nation Sounds",
     href: "https://nation-sounds.alwaysdata.net/",
-    imageSrc: "/nation-sounds.png",
+    imageSrc: "/images/nation-sounds.png",
     imageAlt: "Capture du site Nation Sounds Festival",
     description: "Site web de festival de musique, moderne et performant.",
     tags: ["React", "Tailwind", "Node.js", "PostgreSQL", "i18n"],
@@ -38,7 +38,7 @@ const projects: Project[] = [
 const proWorks: Work[] = [
   {
   title: "Villas Grande Anse",
-  coverSrc: "/villas-grande-anse.png",
+  coverSrc: "/images/villas-grande-anse.png",
   description:
     "Site de location de villas en Guadeloupe, moderne avec blog et SEO soigné.",
   tags: ["Next.js", "Tailwind", "SEO", "Express", "PostgreSQL"],
@@ -50,7 +50,7 @@ const proWorks: Work[] = [
 
   {
     title: "Festival Musilac 2022",
-    coverSrc: "/cartoucheMusilac.jpg",
+    coverSrc: "/images/cartoucheMusilac.jpg",
     description: "Extraits de mon travail lors de l'édition 2022 du festival Musilac",
     tags: [
       "Community Management",
@@ -68,10 +68,10 @@ const proWorks: Work[] = [
       { type: "image", src: "/images/visuels.png", caption: "Création de visuels pour les artistes du tremplin" },
       { type: "image", src: "/images/tremplin.png", caption: "Retour sur les artistes du tremplin 2022" },
       { type: "image", src: "/images/mezerg.png", caption: "Annonce et descriptions des artistes" },
-      { type: "image", src: "/images/contenu.png", caption: "Création de concept et de contenu" },
+      { type: "image", src: "/images/contenu.PNG", caption: "Création de concept et de contenu" },
       { type: "image", src: "/images/moderation.jpg", caption: "Modération des messages et commentaires" },
-      { type: "image", src: "/images/newsletter.png", caption: "Création et diffusion de newsletters (RGPD)" },
-      { type: "image", src: "/images/newsletter2.png", caption: "Création et diffusion de newsletters (RGPD)" },
+      { type: "image", src: "/images/newsletter.PNG", caption: "Création et diffusion de newsletters (RGPD)" },
+      { type: "image", src: "/images/newsletter2.PNG", caption: "Création et diffusion de newsletters (RGPD)" },
       { type: "image", src: "/images/interaction.png", caption: "Interaction avec les fans de Musilac" },
       { type: "image", src: "/images/hyppo.png", caption: "Mascotte Hyppolite sur site" },
       { type: "image", src: "/images/mika.png", caption: "Création de contenu pendant le festival" },
@@ -93,7 +93,7 @@ const proWorks: Work[] = [
 
   {
     title: "Rémi Perrier Organisation",
-    coverSrc: "/logoRPO.png",
+    coverSrc: "/images/logoRPO.png",
     description:
       "Extrait de mon travail chez Rémi Perrier Organisation (producteur et diffuseur de spectacles)",
     tags: [
@@ -106,20 +106,20 @@ const proWorks: Work[] = [
     aspect: "16/10",
 
     media: [
-      { type: "image", src: "/images/logoRPO.png", caption: "Logo de l'entreprise" },
+      { type: "image", src: "/images/logoRPO.PNG", caption: "Logo de l'entreprise" },
       { type: "image", src: "/images/rayonAction.png", caption: "Zone géographique du rayon d'action de RPO" },
       { type: "image", src: "/images/accueilRPO.png", caption: "Page d'accueil du site internet" },
       { type: "image", src: "/images/visuelSoprano1.jpg", caption: "Création de visuels pour les dates des artistes" },
       { type: "image", src: "/images/visuelSoprano2.jpg", caption: "Création de posts et suivis de l'actualité des artistes pour augmenter les ventes en ligne" },
       { type: "image", src: "/images/visuelSoprano3.png", caption: "Création de contenu" },
-      { type: "image", src: "/images/sea.png", caption: "Pilotage de campagnes Social Ads et Search Ads" },
-      { type: "image", src: "/images/sea2.png", caption: "Activation de leviers d’acquisition payants sur les plateformes sociales" },
-      { type: "image", src: "/images/reporting.png", caption: "Production de reportings de performance post-campagne" },
-      { type: "image", src: "/images/reporting2.png", caption: "Analyse et reporting des performances des campagnes d’acquisition payantes" },
-      { type: "image", src: "/images/bdd.png", caption: "Gestion et structuration de bases de données pour campagnes e-mailing" },
-      { type: "image", src: "/images/bdd2.png", caption: "Exploitation des données clients pour personnalisation des campagnes e-mailing" },
-      { type: "image", src: "/images/newsletterRPO.png", caption: "Conception et production de newsletters" },
-      { type: "image", src: "/images/newsletterRPO2.png", caption: "Création de newsletters optimisées pour la conversion" },
+      { type: "image", src: "/images/sea.PNG", caption: "Pilotage de campagnes Social Ads et Search Ads" },
+      { type: "image", src: "/images/sea2.PNG", caption: "Activation de leviers d’acquisition payants sur les plateformes sociales" },
+      { type: "image", src: "/images/reporting.PNG", caption: "Production de reportings de performance post-campagne" },
+      { type: "image", src: "/images/reporting2.PNG", caption: "Analyse et reporting des performances des campagnes d’acquisition payantes" },
+      { type: "image", src: "/images/bdd.PNG", caption: "Gestion et structuration de bases de données pour campagnes e-mailing" },
+      { type: "image", src: "/images/bdd2.PNG", caption: "Exploitation des données clients pour personnalisation des campagnes e-mailing" },
+      { type: "image", src: "/images/newsletterRPO.PNG", caption: "Conception et production de newsletters" },
+      { type: "image", src: "/images/newsletterRPO2.PNG", caption: "Création de newsletters optimisées pour la conversion" },
     ],
   },
 ];

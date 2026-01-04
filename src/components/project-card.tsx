@@ -6,8 +6,8 @@ type Props = {
   title: string;
   description: string;
   tags: string[];
-  href?: string;       // lien externe
-  imageSrc?: string;   // /public/...
+  href?: string;       
+  imageSrc?: string;   
   imageAlt?: string;
 };
 
