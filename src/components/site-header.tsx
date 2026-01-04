@@ -17,7 +17,7 @@ const links = [
   { href: '/', label: 'Accueil' },
   { href: '/parcours', label: 'Parcours' },
   { href: '/competences', label: 'Compétences' },
-  { href: '/projets', label: 'Projets' },
+  { href: '/projets', label: 'Réalisations' },
   { href: '/centres-interets', label: 'Centres d’intérêts' },
   { href: '/contact', label: 'Contact' },
 ];

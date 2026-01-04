@@ -4,11 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from 'next/dynamic';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Media } from "@/components/ImageGalleryCard";
+
 
 const ImageGalleryCard = dynamic(
-  () => import('@/components/image-gallery-card').then(m => m.ImageGalleryCard),
+  () => import('@/components/ImageGalleryCard').then(m => m.ImageGalleryCard),
   {
-    ssr: false, // carte hydratée côté client uniquement
+    ssr: false,
     loading: () => (
       <div className="h-[260px] sm:h-[300px] lg:h-[340px] rounded-2xl border bg-muted animate-pulse" />
     ),
@@ -16,93 +18,100 @@ const ImageGalleryCard = dynamic(
 );
 
 type Video = { title: string; url: string; description?: string };
+
 const musicVideos: Video[] = [
   { title: "Funky Monks — Live 2020", url: "https://www.youtube.com/embed/a2uJde_XWzU", description: "Extrait live." },
   { title: "The Creeps — Live 2018", url: "https://www.youtube.com/embed/gejZ1Rhseqw", description: "Extrait live." },
 ];
 
-/** ===== Montagne (covers + galeries) ===== */
-const mountain = [
+/** ===== Montagne ===== */
+const mountain: {
+  title: string;
+  coverSrc: string;
+  caption?: string;
+  media: Media[];
+}[] = [
   {
+    
     title: "Ski & Snowboard",
     coverSrc: "/interets/montagne/ski-1.jpg",
     caption: "Quelques souvenirs de ski & snowboard.",
-    images: [
-      { src: "/interets/montagne/ski-1.jpg", alt: "Hors piste de Pradieux" },
-      { src: "/interets/montagne/ski-2.jpg", alt: "Descente dans la poudreuse" },
+    media: [
+      { type: "image", src: "/interets/montagne/ski-1.jpg", alt: "Hors piste de Pradieux" },
+      { type: "image", src: "/interets/montagne/ski-2.jpg", alt: "Descente dans la poudreuse" },
     ],
   },
   {
     title: "Randonnée",
     coverSrc: "/interets/montagne/rando-2.jpg",
     caption: "Randos en altitude.",
-    images: [
-      { src: "/interets/montagne/rando-2.jpg", alt: "Chemin du lac de la partie" },
-      { src: "/interets/montagne/rando-1.jpg", alt: "Arrivé au plateau du lac de la partie" },
-      { src: "/interets/montagne/rando-3.jpg", alt: "Panorama vallonné" },
-      { src: "/interets/montagne/rando-4.jpg", alt: "Chalet d'Arplane en été" },
-      { src: "/interets/montagne/rando-5.jpg", alt: "Mont enneigé" },
+    media: [
+      { type: "image", src: "/interets/montagne/rando-2.jpg", alt: "Chemin du lac de la partie" },
+      { type: "image", src: "/interets/montagne/rando-1.jpg", alt: "Arrivée au plateau du lac de la partie" },
+      { type: "image", src: "/interets/montagne/rando-3.jpg", alt: "Panorama vallonné" },
+      { type: "image", src: "/interets/montagne/rando-4.jpg", alt: "Chalet d'Arplane en été" },
+      { type: "image", src: "/interets/montagne/rando-5.jpg", alt: "Mont enneigé" },
     ],
   },
 ];
 
-/** ===== Voyages (covers + galeries) ===== */
-const trips = [
+/** ===== Voyages ===== */
+const trips: {
+  title: string;
+  coverSrc: string;
+  caption?: string;
+  media: Media[];
+}[] = [
   {
     title: "Dublin 2025",
     coverSrc: "/interets/voyages/dublin-2025/1.jpg",
     caption: "Escapade en Irlande — pubs, musique & bords de mer.",
-    images: [
-      { src: "/interets/voyages/dublin-2025/1.jpg" },
-      { src: "/interets/voyages/dublin-2025/2.jpg" },
-      { src: "/interets/voyages/dublin-2025/3.jpg" },
-      { src: "/interets/voyages/dublin-2025/4.jpg" },
-      { src: "/interets/voyages/dublin-2025/5.jpg" },
+    media: [
+      { type: "image", src: "/interets/voyages/dublin-2025/1.jpg" },
+      { type: "image", src: "/interets/voyages/dublin-2025/2.jpg" },
+      { type: "image", src: "/interets/voyages/dublin-2025/3.jpg" },
+      { type: "image", src: "/interets/voyages/dublin-2025/4.jpg" },
+      { type: "image", src: "/interets/voyages/dublin-2025/5.jpg" },
     ],
   },
   {
     title: "San Sébastien 2024",
     coverSrc: "/interets/voyages/san-sebastien-2024/1.jpg",
     caption: "Visite de la côte basque.",
-    images: [
-      { src: "/interets/voyages/san-sebastien-2024/1.jpg" },
-      { src: "/interets/voyages/san-sebastien-2024/2.jpg" },
-      { src: "/interets/voyages/san-sebastien-2024/3.jpg" },
+    media: [
+      { type: "image", src: "/interets/voyages/san-sebastien-2024/1.jpg" },
+      { type: "image", src: "/interets/voyages/san-sebastien-2024/2.jpg" },
+      { type: "image", src: "/interets/voyages/san-sebastien-2024/3.jpg" },
     ],
   },
   {
     title: "Londres 2022",
     coverSrc: "/interets/voyages/londres-2022/1.jpg",
     caption: "Balades urbaines, pubs, musées et football.",
-    images: [
-      { src: "/interets/voyages/londres-2022/1.jpg" },
-      { src: "/interets/voyages/londres-2022/2.jpg" },
-      { src: "/interets/voyages/londres-2022/3.jpg" },
-      { src: "/interets/voyages/londres-2022/4.jpg" },
-      { src: "/interets/voyages/londres-2022/5.jpg" },
-      { src: "/interets/voyages/londres-2022/6.jpg" },
-      { src: "/interets/voyages/londres-2022/7.jpg" },
+    media: [
+      { type: "image", src: "/interets/voyages/londres-2022/1.jpg" },
+      { type: "image", src: "/interets/voyages/londres-2022/2.jpg" },
+      { type: "image", src: "/interets/voyages/londres-2022/3.jpg" },
+      { type: "image", src: "/interets/voyages/londres-2022/4.jpg" },
+      { type: "image", src: "/interets/voyages/londres-2022/5.jpg" },
+      { type: "image", src: "/interets/voyages/londres-2022/6.jpg" },
+      { type: "image", src: "/interets/voyages/londres-2022/7.jpg" },
     ],
   },
   {
     title: "Guadeloupe 2022",
     coverSrc: "/interets/voyages/guadeloupe-2022/1.jpg",
     caption: "Plages, cascades & forêts tropicales.",
-    images: [
-      { src: "/interets/voyages/guadeloupe-2022/1.jpg" },
-      { src: "/interets/voyages/guadeloupe-2022/2.jpg" },
-      { src: "/interets/voyages/guadeloupe-2022/3.jpg" },
-      { src: "/interets/voyages/guadeloupe-2022/4.jpg" },
-      { src: "/interets/voyages/guadeloupe-2022/5.jpg" },
-      { src: "/interets/voyages/guadeloupe-2022/6.jpg" },
+    media: [
+      { type: "image", src: "/interets/voyages/guadeloupe-2022/1.jpg" },
+      { type: "image", src: "/interets/voyages/guadeloupe-2022/2.jpg" },
+      { type: "image", src: "/interets/voyages/guadeloupe-2022/3.jpg" },
+      { type: "image", src: "/interets/voyages/guadeloupe-2022/4.jpg" },
+      { type: "image", src: "/interets/voyages/guadeloupe-2022/5.jpg" },
+      { type: "image", src: "/interets/voyages/guadeloupe-2022/6.jpg" },
     ],
   },
 ];
-
-// // Photographie
-// const photoAlbums = [
-//   { title: "Lac de Bellecombe", href: "/lac-de-bellecombe.jpg", description: "Paysage." },
-// ];
 
 function ResponsiveVideo({ src, title }: { src: string; title: string }) {
   return (
@@ -137,7 +146,12 @@ export default function CentresInteretsPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <ResponsiveVideo src={v.url} title={v.title} />
-                <Link href={v.url.replace("/embed/", "/watch?v=")} className="text-sm underline" target="_blank" rel="noreferrer">
+                <Link
+                  href={v.url.replace("/embed/", "/watch?v=")}
+                  className="text-sm underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Voir sur YouTube →
                 </Link>
               </CardContent>
@@ -156,7 +170,7 @@ export default function CentresInteretsPage() {
               title={m.title}
               coverSrc={m.coverSrc}
               caption={m.caption}
-              images={m.images}
+              media={m.media}
             />
           ))}
         </div>
@@ -172,11 +186,13 @@ export default function CentresInteretsPage() {
               title={t.title}
               coverSrc={t.coverSrc}
               caption={t.caption}
-              images={t.images}
+              media={t.media}
             />
           ))}
         </div>
       </section>
+
+
 
       {/* Photographie */}
       {/* <section className="space-y-2">
