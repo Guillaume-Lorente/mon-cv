@@ -106,8 +106,8 @@ const proWorks: Work[] = [
     aspect: "16/10",
 
     media: [
-      { type: "image", src: "/images/logoRPO.PNG", caption: "Logo de l'entreprise" },
-      { type: "image", src: "/images/rayonAction.png", caption: "Zone géographique du rayon d'action de RPO" },
+      { type: "image", src: "/images/logoRPO.png", caption: "Logo de l'entreprise" },
+      { type: "image", src: "/images/rayonAction.PNG", caption: "Zone géographique du rayon d'action de RPO" },
       { type: "image", src: "/images/accueilRPO.png", caption: "Page d'accueil du site internet" },
       { type: "image", src: "/images/visuelSoprano1.jpg", caption: "Création de visuels pour les dates des artistes" },
       { type: "image", src: "/images/visuelSoprano2.jpg", caption: "Création de posts et suivis de l'actualité des artistes pour augmenter les ventes en ligne" },
