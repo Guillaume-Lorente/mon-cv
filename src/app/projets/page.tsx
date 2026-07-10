@@ -48,6 +48,30 @@ const proWorks: Work[] = [
   websiteUrl: "https://villas-grande-anse.com",
 },
 
+{
+  title: "Moniteur de ski Tignes Val d'Isère",
+  coverSrc: "/images/alex.png",
+  description:
+    "Site web de promotion pour moniteur de ski, i18n et SEO soigné.",
+  tags: ['Next.js', 'Tailwind', 'SEO', 'i18n'],
+  aspect: "16/10",
+
+  // 👇 mode lien simple (PAS de galerie)
+  websiteUrl: "https://alexandre-lorente.vercel.app/fr",
+},
+
+{
+  title: "Wedding & Event Planner",
+  coverSrc: "/images/evenementiels.png",
+  description:
+    "Site web d\'organisation d\'événements avec SEO soigné.",
+  tags: ['Next.js', 'Tailwind', 'SEO'],
+  aspect: "16/10",
+
+  // 👇 mode lien simple (PAS de galerie)
+  websiteUrl: "https://www.evenementiels-en-lumieres.fr/",
+},
+
   {
     title: "Festival Musilac 2022",
     coverSrc: "/images/cartoucheMusilac.jpg",
