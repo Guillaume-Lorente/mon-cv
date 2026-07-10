@@ -24,6 +24,41 @@ const musicVideos: Video[] = [
   { title: "The Creeps — Live 2018", url: "https://www.youtube.com/embed/gejZ1Rhseqw", description: "Extrait live." },
 ];
 
+/** ===== Photographie ===== */
+const photos: {
+  title: string;
+  coverSrc: string;
+  caption?: string;
+  media: Media[];
+}[] = [
+  {
+    
+    title: "Musilac",
+    coverSrc: "/interets/photos/riles2.jpg",
+    caption: "Quelques souvenirs de l'édition 2022 de Musilac.",
+    media: [
+      { type: "image", src: "/interets/photos/nadasurf1.jpg", alt: "Le groupe Nada Surf sur la mainstage côté lac" },
+      { type: "image", src: "/interets/photos/nadasurf2.jpg", alt: "Chanteur et guitariste du groupe Nada Surf" },
+      { type: "image", src: "/interets/photos/thefaim1.jpg", alt: "Le groupe The Faim sur la scène du Korner" },
+      { type: "image", src: "/interets/photos/thefaim2.jpg", alt: "Chanteur du groupe The Faim" },
+      { type: "image", src: "/interets/photos/simpleminds1.jpg", alt: "Le groupe Simple Minds sur la mainstage côté montagne" },
+      { type: "image", src: "/interets/photos/simpleminds2.jpg", alt: "Jim Kerr sur la mainstage" },
+      { type: "image", src: "/interets/photos/sum41.jpg", alt: "Sum41 dans leur décor diabolique en mainstage côté lac" },
+      { type: "image", src: "/interets/photos/dropkick.jpg", alt: "Les Américains de Dropkick Murphy's en mainstage côté montagne" },
+      { type: "image", src: "/interets/photos/tremplin1.jpg", alt: "Groupe local en ouverture de journée sur la scène Korner" },
+      { type: "image", src: "/interets/photos/tremplin2.jpg", alt: "Deuxième groupe local sur la scène Korner" },
+      { type: "image", src: "/interets/photos/vintagetrouble.jpg", alt: "Le groupe Vintage Trouble en ouverture de la mainstage côté lac." },
+      { type: "image", src: "/interets/photos/bobvylan.jpg", alt: "Le duo de Bob Vylan sur la scène du Korner" },
+      { type: "image", src: "/interets/photos/mika1.jpg", alt: "Mika et son bassiste sur la mainstage de Musilac" },
+      { type: "image", src: "/interets/photos/mika2.jpg", alt: "Mika et sa pyrotechnique en mainstage de Musilac" },
+      { type: "image", src: "/interets/photos/riles1.jpg", alt: "Riles sur sa scénographie impressionante en mainstage de Musilac" },
+      { type: "image", src: "/interets/photos/riles2.jpg", alt: "Riles au milieu de flammes" },
+      { type: "image", src: "/interets/photos/mainstage.jpg", alt: "Ouverture de la dernière journée de Musilac 2022 en mainstage" },
+      { type: "image", src: "/interets/photos/zucchero.jpg", alt: "Zucchero en mainstage de Musilac" },
+    ],
+  },
+];
+
 /** ===== Montagne ===== */
 const mountain: {
   title: string;
@@ -42,7 +77,7 @@ const mountain: {
     ],
   },
   {
-    title: "Randonnée",
+    title: "Randonnées",
     coverSrc: "/interets/montagne/rando-2.jpg",
     caption: "Randos en altitude.",
     media: [
@@ -160,6 +195,22 @@ export default function CentresInteretsPage() {
         </div>
       </section>
 
+      {/* Photographie */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold">📷 Photographie</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          {photos.map((m) => (
+            <ImageGalleryCard
+              key={m.title}
+              title={m.title}
+              coverSrc={m.coverSrc}
+              caption={m.caption}
+              media={m.media}
+            />
+          ))}
+        </div>
+      </section>
+
       {/* Montagne */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">🏔️ Montagne</h2>
@@ -191,37 +242,6 @@ export default function CentresInteretsPage() {
           ))}
         </div>
       </section>
-
-
-
-      {/* Photographie */}
-      {/* <section className="space-y-2">
-        <h2 className="text-2xl font-semibold">📷 Photographie</h2>
-        <p className="text-sm text-muted-foreground">Je commence mais je m’y intéresse de plus en plus. Matériel = boîtier Nikon D300S.</p>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {photoAlbums.map((a) => (
-            <Card key={a.title}>
-              <CardHeader>
-                <CardTitle>{a.title}</CardTitle>
-                {a.description && <CardDescription>{a.description}</CardDescription>}
-              </CardHeader>
-              <CardContent>
-                <a href={a.href} target="_blank" rel="noreferrer" className="group block">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border">
-                    <Image
-                      src={a.href}
-                      alt={a.title}
-                      fill
-                      className="object-cover transition group-hover:scale-[1.02]"
-                      sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
-                    />
-                  </div>
-                </a>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section> */}
     </div>
   );
 }
